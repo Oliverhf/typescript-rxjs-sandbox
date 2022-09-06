@@ -1,4 +1,26 @@
-import { Observable, of} from "rxjs";
+import { Observable, of, from} from "rxjs";
+
+
+from (['oliver', 'is', 'cool']).subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log('complete!')
+})
+
+const promise = new Promise((resolve, reject) => {
+    resolve('Resolve');
+})
+
+// You will net see resolve
+console.log(promise);
+
+
+const observablePromise$ = from(promise);
+
+observablePromise$.subscribe({
+    next: (value) => console.log(value)
+})
+
+
 
 let observable$ = new Observable((subscriber) => {
     subscriber.next("Hello world");
