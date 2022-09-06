@@ -1,4 +1,23 @@
-import { Observable, of, from} from "rxjs";
+import { Observable, of, from, map} from "rxjs";
+import { filter } from "rxjs/operators";
+
+
+const observable4$ = from([1, 1, 2, 2, 2]).pipe(filter((num) => num === 2));
+
+const subscribed =  observable4$.subscribe((val) => console.log(val));
+
+const numArr = [1, 2, 3, 4];
+
+const observable3$ = from(numArr).pipe((map((value) => value * 2)));
+
+const returnValue = observable3$.subscribe((x) => console.log(x));
+
+const observable2$ = from([12,2,3,44,45])
+    .pipe(
+        map((val : any) => val * 2)
+    );
+
+observable2$.subscribe(value => console.log(value));
 
 
 from (['oliver', 'is', 'cool']).subscribe({
